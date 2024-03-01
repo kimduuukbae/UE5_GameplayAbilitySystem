@@ -33,6 +33,6 @@ private:
 
 	void TraceCursor();
 
-	IHighlightEffectInterface* LastHittedActor;
-	IHighlightEffectInterface* CurrentHitActor;
+	TObjectPtr<IHighlightEffectInterface> LastHittedActor;
+	TObjectPtr<IHighlightEffectInterface> CurrentHitActor;
 };
