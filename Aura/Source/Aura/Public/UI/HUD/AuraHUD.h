@@ -1,5 +1,3 @@
-// Default
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,9 +13,6 @@ class APlayerState;
 class UAbilitySystemComponent;
 class UAttributeSet;
 
-/**
- * 
- */
 UCLASS()
 class AURA_API AAuraHUD : public AHUD
 {
