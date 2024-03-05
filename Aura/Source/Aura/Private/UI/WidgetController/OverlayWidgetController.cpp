@@ -32,9 +32,16 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	(
 		[this](const FGameplayTagContainer& TagContainer)
 		{
+			FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+
 			for (const FGameplayTag& Tag : TagContainer)
 			{
-				GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+				if (Tag.MatchesTag(MessageTag))
+				{
+					FUIWidgetRow* row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+
+					MessageWidgetRowDelegate.Broadcast(*row);
+				}
 			}
 		}
 	);
