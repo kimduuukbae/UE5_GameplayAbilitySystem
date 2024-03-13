@@ -9,6 +9,25 @@
  * Singleton containing native Gameplay Tags
  */
 
+UENUM()
+enum class AttributeTags
+{
+	Strength,
+	Intelligence,
+	Resilience,
+	Vigor,
+	Armor,
+	ArmorPenetration,
+	BlockChance,
+	CriticalHitChance,
+	CriticalHitDamage,
+	CriticalHitResistance,
+	HealthRegeneration,
+	ManaRegeneration,
+	MaxHealth,
+	MaxMana,
+};
+
 class AuraGameplayTags
 {
 public:
@@ -18,7 +37,11 @@ public:
 	}
 
 	static void InitializeNativeGameplayTags();
+	
+	FGameplayTag GetGameplayTag(AttributeTags TagName);
 
 private:
 	static AuraGameplayTags GameplayTags;
+
+	TMap<AttributeTags, FGameplayTag> AttributeTagContainer;
 };
