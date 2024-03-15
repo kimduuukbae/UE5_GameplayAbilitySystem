@@ -5,12 +5,12 @@ AuraGameplayTags AuraGameplayTags::GameplayTags;
 
 // ex : Container.Add(AttributeTags::Armor, UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Secondary.Armor"), FString("Reduces damage taken, improves Block Chance")));
 #define ADD_ATTRIBUTE_TAGS(TagEnumName, TagName, TagDevComment) \
-Container.Add(AttributeTags::##TagEnumName##, UGameplayTagsManager::Get().AddNativeGameplayTag(FName(TagName), FString(TagDevComment)))
+Container.Add(EAttributeTags::##TagEnumName##, UGameplayTagsManager::Get().AddNativeGameplayTag(FName(TagName), FString(TagDevComment)))
 
 
 void AuraGameplayTags::InitializeNativeGameplayTags()
 {
-	TMap<AttributeTags, FGameplayTag>& Container = GameplayTags.AttributeTagContainer;
+	TMap<EAttributeTags, FGameplayTag>& Container = GameplayTags.AttributeTagContainer;
 	Container.Empty();
 
 	/*
@@ -36,7 +36,7 @@ void AuraGameplayTags::InitializeNativeGameplayTags()
 	ADD_ATTRIBUTE_TAGS(MaxMana, "Attributes.Secondary.MaxMana", "Maximum amount of Mana obtainable");
 }
 
-FGameplayTag AuraGameplayTags::GetGameplayTag(AttributeTags TagName)
+FGameplayTag AuraGameplayTags::GetGameplayTag(EAttributeTags TagName) const
 {
 	return *AuraGameplayTags::Get().AttributeTagContainer.Find(TagName);
 }

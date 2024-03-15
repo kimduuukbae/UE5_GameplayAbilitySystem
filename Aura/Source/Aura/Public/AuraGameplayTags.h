@@ -10,7 +10,7 @@
  */
 
 UENUM()
-enum class AttributeTags
+enum class EAttributeTags
 {
 	Strength,
 	Intelligence,
@@ -38,10 +38,10 @@ public:
 
 	static void InitializeNativeGameplayTags();
 	
-	FGameplayTag GetGameplayTag(AttributeTags TagName);
+	FGameplayTag GetGameplayTag(EAttributeTags TagName) const;
 
 private:
 	static AuraGameplayTags GameplayTags;
 
-	TMap<AttributeTags, FGameplayTag> AttributeTagContainer;
+	TMap<EAttributeTags, FGameplayTag> AttributeTagContainer;
 };
