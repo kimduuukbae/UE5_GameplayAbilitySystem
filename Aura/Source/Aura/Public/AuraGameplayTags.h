@@ -28,10 +28,10 @@ enum class EAttributeTags
 	MaxMana,
 };
 
-class AuraGameplayTags
+class FAuraGameplayTags
 {
 public:
-	static const AuraGameplayTags& Get() 
+	static const FAuraGameplayTags& Get() 
 	{
 		return GameplayTags;
 	}
@@ -41,7 +41,7 @@ public:
 	FGameplayTag GetGameplayTag(EAttributeTags TagName) const;
 
 private:
-	static AuraGameplayTags GameplayTags;
+	static FAuraGameplayTags GameplayTags;
 
 	TMap<EAttributeTags, FGameplayTag> AttributeTagContainer;
 };

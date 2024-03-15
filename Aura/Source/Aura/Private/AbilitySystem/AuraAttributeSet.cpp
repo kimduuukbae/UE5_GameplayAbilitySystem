@@ -3,10 +3,16 @@
 #include "GameplayEffectExtension.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemBlueprintLibrary.h"
+#include "AuraGameplayTags.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 
+	TagsToAttributes.Add(GameplayTags.GetGameplayTag(EAttributeTags::Strength), GetStrengthAttribute);
+	TagsToAttributes.Add(GameplayTags.GetGameplayTag(EAttributeTags::Intelligence), GetIntelligenceAttribute);
+	TagsToAttributes.Add(GameplayTags.GetGameplayTag(EAttributeTags::Resilience), GetResilienceAttribute);
+	TagsToAttributes.Add(GameplayTags.GetGameplayTag(EAttributeTags::Vigor), GetVigorAttribute);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

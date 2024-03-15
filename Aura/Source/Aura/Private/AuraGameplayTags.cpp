@@ -1,14 +1,14 @@
 #include "AuraGameplayTags.h"
 #include "GameplayTagsManager.h"
 
-AuraGameplayTags AuraGameplayTags::GameplayTags;
+FAuraGameplayTags FAuraGameplayTags::GameplayTags;
 
 // ex : Container.Add(AttributeTags::Armor, UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Secondary.Armor"), FString("Reduces damage taken, improves Block Chance")));
 #define ADD_ATTRIBUTE_TAGS(TagEnumName, TagName, TagDevComment) \
 Container.Add(EAttributeTags::##TagEnumName##, UGameplayTagsManager::Get().AddNativeGameplayTag(FName(TagName), FString(TagDevComment)))
 
 
-void AuraGameplayTags::InitializeNativeGameplayTags()
+void FAuraGameplayTags::InitializeNativeGameplayTags()
 {
 	TMap<EAttributeTags, FGameplayTag>& Container = GameplayTags.AttributeTagContainer;
 	Container.Empty();
@@ -36,7 +36,13 @@ void AuraGameplayTags::InitializeNativeGameplayTags()
 	ADD_ATTRIBUTE_TAGS(MaxMana, "Attributes.Secondary.MaxMana", "Maximum amount of Mana obtainable");
 }
 
-FGameplayTag AuraGameplayTags::GetGameplayTag(EAttributeTags TagName) const
+FGameplayTag FAuraGameplayTags::GetGameplayTag(EAttributeTags TagName) const
 {
-	return *AuraGameplayTags::Get().AttributeTagContainer.Find(TagName);
+	const FGameplayTag* Value = FAuraGameplayTags::Get().AttributeTagContainer.Find(TagName);
+	if (Value == nullptr)
+	{
+		return FGameplayTag();
+	}
+	
+	return *Value;
 }
