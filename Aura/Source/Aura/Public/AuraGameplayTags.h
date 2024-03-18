@@ -28,6 +28,17 @@ enum class EAttributeTags
 	MaxMana,
 };
 
+UENUM()
+enum class EInputTags
+{
+	LMB,
+	RMB,
+	Key_1,
+	Key_2,
+	Key_3,
+	Key_4,
+};
+
 class FAuraGameplayTags
 {
 public:
@@ -40,8 +51,11 @@ public:
 	
 	FGameplayTag GetGameplayTag(EAttributeTags TagName) const;
 
+	FGameplayTag GetInputTag(EInputTags TagName) const;
+
 private:
 	static FAuraGameplayTags GameplayTags;
 
 	TMap<EAttributeTags, FGameplayTag> AttributeTagContainer;
+	TMap<EInputTags, FGameplayTag> InputTagContainer;
 };
